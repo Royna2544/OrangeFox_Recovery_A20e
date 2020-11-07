@@ -14,6 +14,7 @@ Default_Settings() {
     export OF_DONT_PATCH_ENCRYPTED_DEVICE="1"
     export OF_MAINTAINER="Royna"
     export OF_NO_TREBLE_COMPATIBILITY_CHECK="1"
+    export OF_USE_HEXDUMP="1"
     export OF_OTA_RES_DECRYPT="1"
     export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES="1"
     export OF_USE_NEW_MAGISKBOOT="1"
@@ -23,7 +24,7 @@ Default_Settings() {
     export FOX_R11="1"
     export OF_FLASHLIGHT_ENABLE="0"
     export FOX_USE_NANO_EDITOR="1"
-    export FOX_BUILD_TYPE="Stable(UNOFFICAL)"
+    export FOX_BUILD_TYPE="UNOFFICAL"
     export FOX_ADVANCED_SECURITY="1"
 
     # lzma
