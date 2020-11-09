@@ -27,6 +27,10 @@ Default_Settings() {
     export FOX_BUILD_TYPE="UNOFFICAL"
     export FOX_ADVANCED_SECURITY="1"
 
+    # Kernel Env Vars
+    export ANDROID_MAJOR_VERSION=q
+    export ARCH=arm64
+
     # lzma
     [ "$FOX_USE_LZMA_COMPRESSION" = "1" ] && export LZMA_RAMDISK_TARGETS="recovery"
 
