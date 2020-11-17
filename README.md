@@ -1,4 +1,4 @@
-# Device Tree for Samsung Galaxy A20e (SM-A205F/K)
+# Device Tree for Samsung Galaxy A20e (SM-A202F/K)
 Device Tree Made by Roynatech2544
 ## Specs
 
