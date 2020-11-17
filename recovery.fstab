@@ -20,3 +20,4 @@
 
 # External storage
 /external_sd                vfat    /dev/block/mmcblk1p1 /dev/block/mmcblk1                           flags=fsflags=utf8;display="Micro SDcard";storage;wipeingui;removable
+/usb-otg        vfat    /dev/block/sdf1       /dev/block/sdf                    flags=display="USB-Storage";storage;wipeingui;removable
