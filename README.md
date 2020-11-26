@@ -4,7 +4,7 @@ Device Tree Made by Roynatech2544
 
 |        Component        |          Specification            |
 | :---------------------- | :-------------------------------- |
-| Chipset                 | Exynos 7884                       |
+| Chipset                 | Exynos 7884B                      |
 | Memory                  | 3 GB                              |
 | Storage                 | 32GB                              |
 | Battery                 | 2900 mAh (non-removable)          |
