@@ -21,7 +21,7 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 # Not available in android-10.0+ source
-# $(call inherit-product, build/target/product/embedded.mk)
+$(call inherit-product, build/target/product/embedded.mk)
 
 # Inherit Telephony packages
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
