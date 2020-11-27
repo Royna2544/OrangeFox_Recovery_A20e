@@ -12,22 +12,40 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-# Kernel
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CONFIG := exynos7885-a20e_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/a20e
+# Board Flags
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
 
-# Image
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/a20e/mkbootimg.mk
+# Kernel (For Building Kernel From Source)
+#TARGET_KERNEL_ARCH := arm64
+#TARGET_KERNEL_CONFIG := exynos7885-a20e_defconfig
+#TARGET_KERNEL_SOURCE := kernel/samsung/a20e
+
+# Kernel (Using Prebuilt)
+TARGET_PREBUILT_KERNEL := device/samsung/a20e/prebuilt/kernel
+
+# Kernel Options
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive enforcing=0 buildvariant=eng
+TARGET_KERNEL_ARCH := arm64
 BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_SEPARATED_DT := true
+
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_TAGS_OFFSET := 0x10000100
+
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --header_version 1
+BOARD_MKBOOTIMG_ARGS += --board SRPSB12A002RU
+BOARD_PREBUILT_DTBOIMAGE := device/samsung/a20e/prebuilt/dtbo.img
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+BOARD_FLASH_BLOCK_SIZE := 131072
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -42,5 +60,10 @@ TW_Y_OFFSET := 80
 TW_H_OFFSET := -80
 TW_USE_TOOLBOX := true
 
-# Include
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/a20e/include
+# Logging
+#TARGET_USES_LOGD := true
+#TWRP_INCLUDE_LOGCAT := true
+
+# Misc
+ALLOW_MISSING_DEPENDENCIES := true
+TARGET_COPY_OUT_VENDOR := vendor
