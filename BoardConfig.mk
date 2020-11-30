@@ -61,6 +61,7 @@ TW_H_OFFSET := -80
 TW_USE_TOOLBOX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_RECOVERY_INITRC := device/samsung/a20e/recovery/root/init.rc
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/kernel/config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file"
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4320133120
