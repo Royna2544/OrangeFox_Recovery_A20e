@@ -68,5 +68,5 @@ jobs:
       - name : Upload OrangeFox Installable ZIP
         uses: actions/upload-artifact@master
         with:
-          name: recovery.zip
+          name: recovery_zip_files
           path: ~/OrangeFox/out/target/product/a20e/*.zip
