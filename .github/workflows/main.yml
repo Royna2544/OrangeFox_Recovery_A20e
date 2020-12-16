@@ -37,7 +37,7 @@ jobs:
           cd ~
           mkdir OrangeFox
           cd OrangeFox
-          git config --global user.name "John Doe"
+          git config --global user.name "John"
           git config --global user.email johndoe@example.com
           yes | repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0 --depth=1 -c --no-tags --no-clone-bundle
           repo sync
