@@ -59,13 +59,14 @@ jobs:
         uses: actions/cache@v2.1.3
         with:
             path: ~/.ccache 
-            key: cache
-      - name: Deploy
-        run: |
-          cd out/target/product/a20e
-          mkdir Final
-          cp *.zip Final
-          cp recovery.img Final
-          zip Final Final.zip
-          curl -F "file=@Final.zip" https://file.io/?expires=1w
-          
+            key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+      - name : Upload OrangeFox Recovery image
+        uses: actions/upload-artifact@master
+        with:
+          name: recovery.img
+          path: ~/OrangeFox/out/target/product/a20e/recovery.img
+      - name : Upload OrangeFox Installable ZIP
+        uses: actions/upload-artifact@master
+        with:
+          name: recovery.zip
+          path: ~/OrangeFox/out/target/product/a20e/*.zip
