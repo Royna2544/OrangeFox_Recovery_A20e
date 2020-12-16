@@ -1,5 +1,5 @@
 # Device Tree for Samsung Galaxy A20e (SM-A202F/K)
-Device Tree Made by Roynatech2544
+Device Tree Made by Roynatech2544 ![CI](https://github.com/roynatech2544/OrangeFox_Recovery_A20e/workflows/CI/badge.svg)
 ## Specs
 
 |        Component        |          Specification            |
