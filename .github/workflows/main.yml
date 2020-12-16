@@ -1,0 +1,69 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the Fox-9.0 branch
+  push:
+    branches: [ Fox-9.0 ]
+  pull_request:
+    branches: [ Fox-9.0 ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Download Source
+        run: |
+          sudo apt-get update
+          sudo apt-get install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+          mkdir ~/bin
+          PATH=~/bin:$PATH
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo       
+          cd ~
+          mkdir OrangeFox
+          cd OrangeFox
+          git config --global user.name "John Doe"
+          git config --global user.email johndoe@example.com
+          yes | repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0 --depth=1 -c --no-tags --no-clone-bundle
+          repo sync
+          git clone https://github.com/roynatech2544/OrangeFox_Recovery_A20e.git device/samsung/a20e
+
+      # Runs a set of commands using the runners shell
+      - name: Build
+        run: |
+          export USE_CCACHE=1
+          export CCACHE_EXEC=/usr/bin/ccache
+          ccache -M 0
+          ccache -F 0
+          . build/envsetup.sh
+          lunch omni_a20e-eng
+          mka recoveryimage
+      - name: Cache
+        uses: actions/cache@v2.1.3
+        with:
+            path: ~/.ccache 
+            key: cache
+      - name: Deploy
+        run: |
+          cd out/target/product/a20e
+          mkdir Final
+          cp *.zip Final
+          cp recovery.img Final
+          zip Final Final.zip
+          curl -F "file=@Final.zip" https://file.io/?expires=1w
+          
