@@ -39,7 +39,7 @@ jobs:
           cd OrangeFox
           git config --global user.name "John"
           git config --global user.email johndoe@example.com
-          yes | repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0 --depth=1 -c --no-tags --no-clone-bundle
+          yes 2>/dev/null | repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0 --depth=1 -c --no-tags --no-clone-bundle
           repo sync
           git clone https://github.com/roynatech2544/OrangeFox_Recovery_A20e.git device/samsung/a20e
 
