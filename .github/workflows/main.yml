@@ -41,7 +41,6 @@ jobs:
           git config --global user.email johndoe@example.com
           yes 2>/dev/null | repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0 --depth=1 -c --no-tags --no-clone-bundle
           repo sync
-          yes 2>/dev/null | rm -r .repo
           git clone https://github.com/roynatech2544/OrangeFox_Recovery_A20e.git device/samsung/a20e
 
       # Runs a set of commands using the runners shell
@@ -54,6 +53,7 @@ jobs:
           ccache -F 0
           . build/envsetup.sh
           lunch omni_a20e-eng
+          yes 2>/dev/null | rm -r .repo
           mka recoveryimage
       - name: Cache
         uses: actions/cache@v2.1.3
